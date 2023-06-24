@@ -28,8 +28,9 @@ class IncrementDecrementCommand(sublime_plugin.TextCommand):
                         # integer
                         if self.view.substr(begin - 1) == '-':
                             # guess_type = 'int'
-                            begin -= 1
-                            break
+                            if not self.view.substr(begin - 2).isdigit():
+                                begin -= 1
+                                break
                         # binary
                         elif self.view.substr(begin - 1) == 'b':
                             begin -= 2
